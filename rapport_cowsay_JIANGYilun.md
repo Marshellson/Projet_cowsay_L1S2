@@ -1,4 +1,5 @@
 <!--
+
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 14:28:58
  * @LastEditTime: 2022-04-24 18:00:10
@@ -469,7 +470,7 @@ done
 `affiche_vache`:
 
 ```C
-int affiche_vache (int eyes, int tongue)
+int affiche_vache()
 {
     printf("\n");
     printf("    \\   ^__^\n");
@@ -480,7 +481,26 @@ int affiche_vache (int eyes, int tongue)
     printf("\n");
     return 0;
 }
+
+int main()
+{
+    affiche_vache();
+}
 ```
+
+Après la compilation, nous avons pu obtenir les résultats suivants:
+
+```bash
+$ gcc newcow.c && ./a.out                                                                                                        
+
+    \   ^__^
+     \  (oo)\_______
+        (__)\       )\/\
+            ||----w |
+            ||     ||
+```
+
+
 
 
 
@@ -563,6 +583,19 @@ int main (int argc, char *argv[])
     }
     affiche_vache(eyes, tongue);
 }
+```
+
+Après la compilation, nous avons pu obtenir les résultats suivants:
+
+```bash
+# yilunjiang @ YilundeMBP in ~/GitHub/Projet_cowsay_L1S2 on git:main x [20:53:10] 
+$ gcc test.c && ./a.out -e AA -t U
+
+    \   ^__^
+     \  (AA)\_______
+        (__)\       )\/\
+         U ||----w |
+            ||     ||
 ```
 
 
@@ -657,5 +690,10 @@ int main (int argc, char *argv[])
     int length = strlen(message) + 1;
     affiche_vache(&length, message, eyes, tongue, &tail);
 }
+```
+
+Si je veux obtenir des informations d'aide:
+
+```bash
 ```
 
