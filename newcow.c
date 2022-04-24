@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 18:07:27
- * @LastEditTime: 2022-04-24 19:01:13
+ * @LastEditTime: 2022-04-24 19:34:20
  * @LastEditors: JIANG Yilun
  * @Description: 
  * @FilePath: /Projet_cowsay_L1S2/newcow.c
@@ -9,8 +9,9 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-int affiche_vache (int *length, char *message, char *eyes, char *tongue)
+int affiche_vache (int *length, char *message, char *eyes, char *tongue, int *tail)
 {
     printf(" -");
     for (int i = 0; i < *length; i++)
@@ -18,7 +19,7 @@ int affiche_vache (int *length, char *message, char *eyes, char *tongue)
         printf("-");
     }
     printf("\n");
-    printf("<%s>\n", message);
+    printf("< %s >\n", message);
     printf(" -");
     for (int i = 0; i < *length; i++)
     {
@@ -27,7 +28,12 @@ int affiche_vache (int *length, char *message, char *eyes, char *tongue)
     printf("\n");
     printf("    \\   ^__^\n");
     printf("     \\  (%s)\\_______\n",eyes);
-    printf("        (__)\\       )\\/\\\n");
+    printf("        (__)\\       )\\/\\");
+    for (int i = 0; i < *tail; i++)
+    {
+        printf("/\\");
+    }
+    printf("\n");
     printf("         %s ||----w |\n",tongue);
     printf("            ||     ||\n");
     printf("\n");
@@ -39,7 +45,7 @@ int main (int argc, char *argv[])
     char *eyes = "oo";
     char *tongue = "  ";
     char *message = "";
-    char *tail = NULL;
+    int tail = 0;
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "-e") == 0 || strcmp(argv[i], "--eyes") == 0)
@@ -67,8 +73,15 @@ int main (int argc, char *argv[])
             printf("\n");
             return 0;
         }
+        if (strcmp(argv[i], "-t") == 0 || strcmp(argv[i], "--tail") == 0)
+        {
+            tail = atoi(argv[i+1]);
+        }
     }
-    printf("%s %s\n", eyes, tongue);
-    int length = strlen(message) - 1;
-    affiche_vache(&length, message, eyes, tongue);
+    if (strcmp(message, "") == 0)
+    {
+        message = "--help to display help";
+    }
+    int length = strlen(message) + 1;
+    affiche_vache(&length, message, eyes, tongue, &tail);
 }
