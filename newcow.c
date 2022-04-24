@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 18:07:27
- * @LastEditTime: 2022-04-24 20:34:45
+ * @LastEditTime: 2022-04-24 21:10:24
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/newcow.c
@@ -28,7 +28,7 @@ int affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tai
     printf("\n");
     printf("    \\   ^__^\n");
     printf("     \\  (%s)\\_______\n", eyes);
-    printf("        (__)\\       )\\/\\");
+    printf("        (__)\\       )\\");
     for (int i = 0; i < *tail; i++)
     {
         printf("/\\");
@@ -46,10 +46,10 @@ void gotoxy(x, y) { printf("\033[%d;%dH", x, y); }
 
 int main(int argc, char *argv[])
 {
-    char *eyes = "oo";
-    char *tongue = "  ";
-    char *message = "";
-    int tail = 0;
+    char *eyes = "oo"; // default eyes
+    char *tongue = "  "; // default tongue
+    char *message = "--help to display help"; // default message
+    int tail = 1; // default tail
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "-e") == 0 || strcmp(argv[i], "--eyes") == 0)
@@ -81,10 +81,6 @@ int main(int argc, char *argv[])
             printf("\n");
             return 0;
         }
-    }
-    if (strcmp(message, "") == 0)
-    {
-        message = "--help to display help";
     }
     int length = strlen(message) + 1;
     affiche_vache(&length, message, eyes, tongue, &tail);

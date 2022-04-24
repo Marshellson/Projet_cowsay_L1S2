@@ -2,7 +2,7 @@
 
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 14:28:58
- * @LastEditTime: 2022-04-24 18:00:10
+ * @LastEditTime: 2022-04-24 21:15:04
  * @LastEditors: JIANG Yilun
  * @Description: 
  * @FilePath: /Projet_cowsay_L1S2/rapport_cowsay_JIANGYilun.md
@@ -588,7 +588,6 @@ int main (int argc, char *argv[])
 Après la compilation, nous avons pu obtenir les résultats suivants:
 
 ```bash
-# yilunjiang @ YilundeMBP in ~/GitHub/Projet_cowsay_L1S2 on git:main x [20:53:10] 
 $ gcc test.c && ./a.out -e AA -t U
 
     \   ^__^
@@ -606,9 +605,9 @@ $ gcc test.c && ./a.out -e AA -t U
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 18:07:27
- * @LastEditTime: 2022-04-24 19:34:20
+ * @LastEditTime: 2022-04-24 21:10:24
  * @LastEditors: JIANG Yilun
- * @Description: 
+ * @Description:
  * @FilePath: /Projet_cowsay_L1S2/newcow.c
  */
 
@@ -616,7 +615,7 @@ $ gcc test.c && ./a.out -e AA -t U
 #include <string.h>
 #include <stdlib.h>
 
-int affiche_vache (int *length, char *message, char *eyes, char *tongue, int *tail)
+int affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tail)
 {
     printf(" -");
     for (int i = 0; i < *length; i++)
@@ -632,38 +631,46 @@ int affiche_vache (int *length, char *message, char *eyes, char *tongue, int *ta
     }
     printf("\n");
     printf("    \\   ^__^\n");
-    printf("     \\  (%s)\\_______\n",eyes);
-    printf("        (__)\\       )\\/\\");
+    printf("     \\  (%s)\\_______\n", eyes);
+    printf("        (__)\\       )\\");
     for (int i = 0; i < *tail; i++)
     {
         printf("/\\");
     }
     printf("\n");
-    printf("         %s ||----w |\n",tongue);
+    printf("         %s ||----w |\n", tongue);
     printf("            ||     ||\n");
     printf("\n");
     return 0;
 }
 
-int main (int argc, char *argv[])
+void update() { printf("\033[H\033[J"); }
+
+void gotoxy(x, y) { printf("\033[%d;%dH", x, y); }
+
+int main(int argc, char *argv[])
 {
-    char *eyes = "oo";
-    char *tongue = "  ";
-    char *message = "";
-    int tail = 0;
+    char *eyes = "oo"; // default eyes
+    char *tongue = "  "; // default tongue
+    char *message = "--help to display help"; // default message
+    int tail = 1; // default tail
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "-e") == 0 || strcmp(argv[i], "--eyes") == 0)
         {
-            eyes = argv[i+1];
+            eyes = argv[i + 1];
         }
-        if (strcmp(argv[i], "-t") == 0 || strcmp(argv[i], "--tongue") == 0)
+        if (strcmp(argv[i], "-T") == 0 || strcmp(argv[i], "--tongue") == 0)
         {
-            tongue = argv[i+1];
+            tongue = argv[i + 1];
         }
         if (strcmp(argv[i], "-m") == 0 || strcmp(argv[i], "--message") == 0)
         {
-            message = argv[i+1];
+            message = argv[i + 1];
+        }
+        if (strcmp(argv[i], "-t") == 0 || strcmp(argv[i], "--tail") == 0)
+        {
+            tail = atoi(argv[i + 1]);
         }
         if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0)
         {
@@ -678,22 +685,72 @@ int main (int argc, char *argv[])
             printf("\n");
             return 0;
         }
-        if (strcmp(argv[i], "-t") == 0 || strcmp(argv[i], "--tail") == 0)
-        {
-            tail = atoi(argv[i+1]);
-        }
-    }
-    if (strcmp(message, "") == 0)
-    {
-        message = "--help to display help";
     }
     int length = strlen(message) + 1;
     affiche_vache(&length, message, eyes, tongue, &tail);
 }
 ```
 
+On peut ajouter d'argument "eyes" ou argument "tongue".
+
+S'il n'y a pas de message d'entrée:
+
+```bash
+$ gcc newcow.c && ./a.out -e AA -T U
+ ------------------------
+< --help to display help >
+ ------------------------
+    \   ^__^
+     \  (AA)\_______
+        (__)\       )\/\
+         U ||----w |
+            ||     ||
+```
+
+
+
 Si je veux obtenir des informations d'aide:
 
 ```bash
+$ gcc newcow.c && ./a.out -h        
+
+Usage: newcow [OPTION]...
+
+Options:
+  -e, --eyes=STRING  eyes of the cow (default: oo)
+  -t, --tongue=STRING tongue of the cow (default:  )
+  -m, --message=STRING message to display (default: none)
+  -h, --help          display this help and exit
 ```
 
+
+
+Bien sûr, la possibilité d'afficher des messages est essentielle:
+
+```bash
+$ gcc newcow.c && ./a.out -e AA -T UU -m "Hello, my name is JIANG Yilun"
+ -------------------------------
+< Hello, my name is JIANG Yilun >
+ -------------------------------
+    \   ^__^
+     \  (AA)\_______
+        (__)\       )\/\
+         UU ||----w |
+            ||     ||
+```
+
+
+
+En même temps, nous pouvons définir la longueur du tail:
+
+```bash
+$ gcc newcow.c && ./a.out -e AA -T UU -m "Hello, my name is JIANG Yilun" -t 10
+ -------------------------------
+< Hello, my name is JIANG Yilun >
+ -------------------------------
+    \   ^__^
+     \  (AA)\_______
+        (__)\       )\/\/\/\/\/\/\/\/\/\/\/\
+         UU ||----w |
+            ||     ||
+```
