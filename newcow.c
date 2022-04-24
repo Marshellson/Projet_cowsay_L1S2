@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 18:07:27
- * @LastEditTime: 2022-04-24 18:44:29
+ * @LastEditTime: 2022-04-24 18:45:31
  * @LastEditors: JIANG Yilun
  * @Description: 
  * @FilePath: /Projet_cowsay_L1S2/newcow.c
@@ -12,53 +12,20 @@
 
 int affiche_vache (char *eyes, char *tongue)
 {
-    if (eyes == NULL && tongue == NULL){
-        printf("\n");
-        printf("    \\   ^__^\n");
-        printf("     \\  (oo)\\_______\n");
-        printf("        (__)\\       )\\/\\\n");
-        printf("            ||----w |\n");
-        printf("            ||     ||\n");
-        printf("\n");
-        return 0;
-    }
-    else if (eyes == NULL && tongue != NULL){
-        printf("\n");
-        printf("    \\   ^__^\n");
-        printf("     \\  (oo)\\_______\n");
-        printf("        (__)\\       )\\/\\\n");
-        printf("         %s ||----w |\n",tongue);
-        printf("            ||     ||\n");
-        printf("\n");
-        return 0;
-    }
-    else if (eyes != NULL && tongue == NULL){
-        printf("\n");
-        printf("    \\   ^__^\n");
-        printf("     \\  (%s)\\_______\n",eyes);
-        printf("        (__)\\       )\\/\\\n");
-        printf("            ||----w |\n");
-        printf("            ||     ||\n");
-        printf("\n");
-        return 0;
-    }
-    else
-    {
-        printf("\n");
-        printf("    \\   ^__^\n");
-        printf("     \\  (%s)\\_______\n",eyes);
-        printf("        (__)\\       )\\/\\\n");
-        printf("         %s ||----w |\n",tongue);
-        printf("            ||     ||\n");
-        printf("\n");
-        return 0;
-    }
+    printf("\n");
+    printf("    \\   ^__^\n");
+    printf("     \\  (%s)\\_______\n",eyes);
+    printf("        (__)\\       )\\/\\\n");
+    printf("         %s ||----w |\n",tongue);
+    printf("            ||     ||\n");
+    printf("\n");
+    return 0;
 }
 
 int main (int argc, char *argv[])
 {
-    char *eyes = NULL;
-    char *tongue = NULL;
+    char *eyes = "oo";
+    char *tongue = "  ";
     char *message = NULL;
     char *tail = NULL;
     for (int i = 1; i < argc; i++)
