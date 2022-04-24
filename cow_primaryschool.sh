@@ -1,7 +1,7 @@
 ###
  # @Author: JIANG Yilun
  # @Date: 2022-04-24 15:33:12
- # @LastEditTime: 2022-04-24 17:54:01
+ # @LastEditTime: 2022-04-24 18:02:45
  # @LastEditors: JIANG Yilun
  # @Description: 
  # @FilePath: /Projet_cowsay_L1S2/cow_primaryschool.sh
@@ -9,7 +9,6 @@
 
 
 i=1
-
 if [ $# -eq 0 ]; then
     echo "Saissez un nombre:"
     read nombre

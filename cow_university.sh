@@ -1,18 +1,11 @@
 ###
  # @Author: JIANG Yilun
  # @Date: 2022-04-24 15:55:25
- # @LastEditTime: 2022-04-24 17:42:31
+ # @LastEditTime: 2022-04-24 18:04:44
  # @LastEditors: JIANG Yilun
  # @Description: 
  # @FilePath: /Projet_cowsay_L1S2/cow_university.sh
 ### 
-
-# echo "donnez le dernier nombres premiers à calculer"
-# read n
-# i=2     #le premier nombre premier
-# a=$(bc <<< "scale=0; sqrt($n)")  #scale=0 n'affiche pas les décimale, scale=1 la première, etc... sqrt() calcule la racine carré. marche grace à la commande bc
-# m=3
-# echo "voici sa suite de nombres premiers de $i à $n"
 
 nbr_premier() {
     while [ $i -le $m ]

@@ -1,7 +1,7 @@
 <!--
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 14:28:58
- * @LastEditTime: 2022-04-24 15:13:32
+ * @LastEditTime: 2022-04-24 18:00:10
  * @LastEditors: JIANG Yilun
  * @Description: 
  * @FilePath: /Projet_cowsay_L1S2/rapport_cowsay_JIANGYilun.md
@@ -183,3 +183,282 @@ $ cowsay -T U "Hello, my name is JIANG Yilun"
 ```
 
 ## Bash
+
+En fait, le code présenté ci-dessous a été modifié une deuxième fois (après avoir vu la vache folle) et comporte deux sections distinctes : une avec un argument et une sans.
+
+### cow_kindergarten
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 15:15:21
+ # @LastEditTime: 2022-04-24 17:55:56
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/cow_kindergarten.sh
+### 
+
+if [ $# -eq 0 ]; then
+    temp=10
+    while [ $temp -gt 0 ]; do
+        clear
+        cowsay $temp
+        sleep 1
+        temp=$((temp-1))
+    done
+else
+    temp=$1
+    while [ $temp -gt 0 ]; do
+        clear
+        cowsay $temp
+        sleep 1
+        temp=$((temp-1))
+    done
+fi
+```
+
+
+
+### cow_primaryschool
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 15:33:12
+ # @LastEditTime: 2022-04-24 17:54:01
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/cow_primaryschool.sh
+### 
+
+i=1
+if [ $# -eq 0 ]; then
+    echo "Saissez un nombre:"
+    read nombre
+    while [ $i -le $nombre ]; do
+        clear
+        cowsay $i
+        sleep 1
+        i=$((i+1))
+    done
+else
+    nombre=$1
+    while [ $i -le $nombre ]; do
+        clear
+        cowsay $i
+        sleep 1
+        i=$((i+1))
+    done
+fi
+```
+
+
+
+### cow_highschool
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 15:37:56
+ # @LastEditTime: 2022-04-24 17:52:24
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/cow_highschool.sh
+### 
+
+i=1
+
+if [ $# -eq 0 ]; then
+    echo "Saissez un nombre:"
+    read nombre
+    while [ $i -le $nombre ]; do
+        clear
+        cowsay $(($i*$i))
+        sleep 1
+        i=$((i+1))
+    done
+else
+    nombre=$1
+    while [ $i -le $nombre ]; do
+        clear
+        cowsay $(($i*$i))
+        sleep 1
+        i=$((i+1))
+    done
+fi
+```
+
+
+
+### cow_college
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 15:41:00
+ # @LastEditTime: 2022-04-24 17:44:13
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/cow_college.sh
+### 
+
+# nombres de Finonacci
+
+i=0
+j=1
+
+if [ $# -eq 0 ]; then
+    echo "Saissez un nombre:"
+    read nombre
+    while [ $j -lt $nombre ]; do
+        cowsay $j
+        temp=$((i+j))
+        i=$j
+        j=$temp
+        sleep 1
+    done
+else
+    nombre=$1
+    while [ $j -lt $nombre ]; do
+        cowsay $j
+        temp=$((i+j))
+        i=$j
+        j=$temp
+        sleep 1
+    done
+fi
+```
+
+
+
+### cow_university
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 15:55:25
+ # @LastEditTime: 2022-04-24 17:42:31
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/cow_university.sh
+### 
+
+nbr_premier() {
+    while [ $i -le $m ]
+    do
+        p=$(($m%$i))
+        if [ $p -eq 0 ]
+        then
+            break
+        else
+            i=$((i+1))
+        fi
+        if [ $i -eq $m ]
+        then
+            if [ $m -eq $n ]
+            then
+                echo "$m est un nombre premier"
+                cowsay -T U "$m"
+            else
+                echo "$m est un nombre premier"
+                cowsay "$m"
+            fi
+        fi
+    done
+}
+
+if [ $# -eq 0 ]; then
+    echo "donnez le dernier nombres premiers à calculer"
+    read n
+    i=2     #le premier nombre premier
+    a=$(bc <<< "scale=0; sqrt($n)")  #scale=0 n'affiche pas les décimale, scale=1 la première, etc... sqrt() calcule la racine carré. marche grace à la commande bc
+    m=3
+    echo "voici sa suite de nombres premiers de $i à $n"
+    while [ $m -le $n ]
+    do
+        echo m:$m
+        i=2
+        nbr_premier $m
+        m=$((m+1))
+        sleep 1
+    done
+else
+    n=$1
+    i=2     #le premier nombre premier
+    a=$(bc <<< "scale=0; sqrt($n)")  #scale=0 n'affiche pas les décimale, scale=1 la première, etc... sqrt() calcule la racine carré. marche grace à la commande bc
+    m=3
+    echo "voici sa suite de nombres premiers de $i à $n"
+    while [ $m -le $n ]
+    do
+        echo m:$m
+        i=2
+        nbr_premier $m
+        m=$((m+1))
+        sleep 1
+    done
+fi
+```
+
+
+
+### smart_cow
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 16:27:30
+ # @LastEditTime: 2022-04-24 16:40:09
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/smart_cow.sh
+### 
+
+
+if [ $# -eq 0 ]; then
+    echo "Donner l'expression à calculer:"
+    read expression
+    cowsay -e $(echo "$expression" | bc) $expression
+else
+    cowsay -e $(echo "$1" | bc) $1
+fi
+```
+
+
+
+### crazy_cow
+
+```bash
+###
+ # @Author: JIANG Yilun
+ # @Date: 2022-04-24 16:44:04
+ # @LastEditTime: 2022-04-24 17:57:02
+ # @LastEditors: JIANG Yilun
+ # @Description: 
+ # @FilePath: /Projet_cowsay_L1S2/crazy_cow.sh
+### 
+
+for var in "$@"
+do
+    if [[ "$var" == "-h" || "$var" == "--help" ]]; then
+        echo "Usage: $0 [OPTION]... [FILE]..."
+        echo "Print a crazy cow."
+    elif [[ "$var" == "-v" || "$var" == "--version" ]]; then
+        echo "crazy_cow.sh version 1.0"
+    elif [[ "$var" == "-a" || "$var" == "--addition" ]]; then
+        sh cow_primaryschool.sh ${@: -1}
+    elif [[ "$var" == "-c" || "$var" == "--countdown" ]]; then
+        sh cow_kindergarten.sh ${@: -1}
+    elif [[ "$var" == "-s" || "$var" == "--square" ]]; then
+        sh cow_highschool.sh ${@: -1}
+    elif [[ "$var" == "-f" || "$var" == "--finonacci" ]]; then
+        sh cow_college.sh ${@: -1}
+    elif [[ "$var" == "-p" || "$var" == "--premiere" ]]; then
+        sh cow_university.sh ${@: -1}
+    elif [[ "$var" == "-S" || "$var" == "--smart" ]]; then
+        sh smart_cow.sh ${@: -1}
+    fi
+done
+```
+
+
+
