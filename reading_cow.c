@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 13:34:08
- * @LastEditTime: 2022-04-25 14:48:31
+ * @LastEditTime: 2022-04-25 21:26:01
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/reading_cow.c
@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 void affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tail)
 {
@@ -71,6 +72,8 @@ int main(int argc, char *argv[])
             strcpy(c_buffer, message);
             strcat(c_buffer, &c);
             message = c_buffer;
+            // message[length - 1] = c;
+            // message[length] = '\0';
         }
         fclose(ficher);
         length++;
