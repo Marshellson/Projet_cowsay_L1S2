@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-04-26 22:47:49
+ * @LastEditTime: 2022-04-26 23:03:10
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
@@ -433,12 +433,12 @@ int main(int argc, char *argv[])
                 } else {
                     strcpy(message, "You don't have enough food!");
                     length = strlen(message);
-                    int random_number = rand() % (life - 1);
+                    int random_number = (rand() % (life - 2)) + 1;
                     life -= random_number;
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 }
             } else {
-                int random_number = rand() % (life - 1);
+                int random_number = (rand() % (life - 2)) + 1;
                 life -= random_number;
                 strcpy(message, "You didn't eat! Life - ");
                 char str_random_number[MAX_LENGTH] = "";
