@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 13:34:08
- * @LastEditTime: 2022-04-25 21:26:01
+ * @LastEditTime: 2022-04-26 17:43:29
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/reading_cow.c
@@ -12,6 +12,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+
+#define MAX_LENGTH 512
 
 void affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tail)
 {
@@ -58,7 +60,7 @@ int main(int argc, char *argv[])
     {
         char *eyes = "oo";   // default eyes
         char *tongue = "  "; // default tongue
-        char *message = "";  // default message
+        char message[MAX_LENGTH] = "";  // default message
         int tail = 1;        // default tail
         int length = 0;
         char c;
@@ -68,12 +70,12 @@ int main(int argc, char *argv[])
             affiche_vache(&length, message, eyes, &c, &tail);
             sleep(1);
             update();
-            char *c_buffer = malloc(strlen(message) + strlen(&c) + 1);
-            strcpy(c_buffer, message);
-            strcat(c_buffer, &c);
-            message = c_buffer;
-            // message[length - 1] = c;
-            // message[length] = '\0';
+            // char *c_buffer = malloc(strlen(message) + strlen(&c) + 1);
+            // strcpy(c_buffer, message);
+            // strcat(c_buffer, &c);
+            // message = c_buffer;
+            message[length - 1] = c;
+            message[length] = '\0';
         }
         fclose(ficher);
         length++;

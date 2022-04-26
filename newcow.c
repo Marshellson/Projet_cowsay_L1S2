@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 18:07:27
- * @LastEditTime: 2022-04-24 21:10:24
+ * @LastEditTime: 2022-04-26 17:57:15
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/newcow.c
@@ -11,17 +11,17 @@
 #include <string.h>
 #include <stdlib.h>
 
-int affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tail)
+int affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tail, char *balls)
 {
     printf(" -");
-    for (int i = 0; i < *length; i++)
+    for (int i = 0; i <= *length; i++)
     {
         printf("-");
     }
     printf("\n");
     printf("< %s >\n", message);
     printf(" -");
-    for (int i = 0; i < *length; i++)
+    for (int i = 0; i <= *length; i++)
     {
         printf("-");
     }
@@ -34,7 +34,7 @@ int affiche_vache(int *length, char *message, char *eyes, char *tongue, int *tai
         printf("/\\");
     }
     printf("\n");
-    printf("         %s ||----w |\n", tongue);
+    printf("         %s ||----w |%s\n", tongue, balls);
     printf("            ||     ||\n");
     printf("\n");
     return 0;
@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     char *eyes = "oo"; // default eyes
     char *tongue = "  "; // default tongue
     char *message = "--help to display help"; // default message
+    char *balls = "  "; // default balls
     int tail = 1; // default tail
     for (int i = 1; i < argc; i++)
     {
@@ -68,6 +69,10 @@ int main(int argc, char *argv[])
         {
             tail = atoi(argv[i + 1]);
         }
+        if (strcmp(argv[i], "-b") == 0 || strcmp(argv[i], "--balls") == 0)
+        {
+            balls = argv[i + 1];
+        }
         if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0)
         {
             printf("\n");
@@ -82,6 +87,10 @@ int main(int argc, char *argv[])
             return 0;
         }
     }
-    int length = strlen(message) + 1;
-    affiche_vache(&length, message, eyes, tongue, &tail);
+    if (argc % 2 == 0)
+    {
+        message = argv[argc - 1];
+    }
+    int length = strlen(message);
+    affiche_vache(&length, message, eyes, tongue, &tail, balls);
 }
