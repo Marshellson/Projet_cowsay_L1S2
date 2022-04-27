@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-04-26 23:03:10
+ * @LastEditTime: 2022-04-27 14:53:03
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
@@ -123,7 +123,6 @@ void time_count(int time_tick, int hour, int minite, int arr[])
     arr[1] = minite;
 }
 
-
 int check_prime_number(int nombre)
 {
     int i;
@@ -136,7 +135,6 @@ int check_prime_number(int nombre)
     }
     return 1;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -168,7 +166,7 @@ int main(int argc, char *argv[])
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
 
-    strcpy(message, "Please choose the speed of the game: (1) for slow (default), (2) for medium, (3) for fast");
+    strcpy(message, "Please choose the speed of the game: (1) for slow (default), (2) for medium, (3) for fast, (4) for super fast (developer mode xd)");
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, 1, hour, minite, food);
 
@@ -194,6 +192,13 @@ int main(int argc, char *argv[])
         strcpy(message, "You chose the fast speed, the tick will be 3 seconds");
         length = strlen(message);
         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+        time_tick = 3;
+    }
+    else if (game_speed == 4)
+    {
+        strcpy(message, "You chose the super fast speed, the tick will be 1 seconds");
+        length = strlen(message);
+        affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
         time_tick = 1;
     }
     else
@@ -212,10 +217,7 @@ int main(int argc, char *argv[])
     while (life > 0 && life < 10)
     {
         int arr[2];
-        strcpy(message, "What can i do for u? ");
-        char str[20];
-        sprintf(str, "%ld", seconds_of_start);
-        strcat(message, str);
+        strcpy(message, "...");
         // printf("%d\n", rand() % 10);
         length = strlen(message);
         time_count(time_tick, hour, minite, arr);
@@ -225,16 +227,18 @@ int main(int argc, char *argv[])
         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
         i++;
         update();
-        if (minite == 0){
+        if (minite == 0)
+        {
             strcpy(message, "It's time to think about something!");
             length = strlen(message);
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
             int random_number = rand() % 5;
             srand(time(NULL));
             // prime number
-            if (random_number == 1) {
+            if (random_number == 1)
+            {
                 int nombre_premier = rand() % 100;
-                strcpy(message, "Is it a prime number? (1) for yes, (2) for no: " );
+                strcpy(message, "Is it a prime number? (1) for yes, (2) for no: ");
                 char str_nombre_premier[MAX_LENGTH] = "";
                 sprintf(str_nombre_premier, "%d", nombre_premier);
                 strcat(message, str_nombre_premier);
@@ -243,24 +247,32 @@ int main(int argc, char *argv[])
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 int answer = 0;
                 scanf("%d", &answer);
-                if (answer == 1) {
-                    if (check_prime_number(nombre_premier)) {
+                if (answer == 1)
+                {
+                    if (check_prime_number(nombre_premier))
+                    {
                         strcpy(message, "Yes, it is a prime number! You got it! Food + 2");
                         length = strlen(message);
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                         food += 2;
-
-                    } else {
+                    }
+                    else
+                    {
                         strcpy(message, "No, it is not a prime number! You lost it!");
                         length = strlen(message);
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     }
-                } else {
-                    if (check_prime_number(nombre_premier)) {
+                }
+                else
+                {
+                    if (check_prime_number(nombre_premier))
+                    {
                         strcpy(message, "Yes, it is a prime number! You lost it!");
                         length = strlen(message);
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
-                    } else {
+                    }
+                    else
+                    {
                         strcpy(message, "No, it is not a prime number! You got it! Food + 2");
                         length = strlen(message);
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
@@ -269,7 +281,8 @@ int main(int argc, char *argv[])
                 }
             }
             // addition
-            else if (random_number == 2) {
+            else if (random_number == 2)
+            {
                 int nombre_1 = rand() % 100;
                 int nombre_2 = rand() % 100;
                 strcpy(message, "What is the sum of ");
@@ -286,7 +299,8 @@ int main(int argc, char *argv[])
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 int answer = 0;
                 scanf("%d", &answer);
-                if (answer == nombre_1 + nombre_2) {
+                if (answer == nombre_1 + nombre_2)
+                {
                     strcpy(message, "Yes, it is the sum of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -295,7 +309,9 @@ int main(int argc, char *argv[])
                     length = strlen(message);
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
-                } else {
+                }
+                else
+                {
                     strcpy(message, "No, it is not the sum of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -306,7 +322,8 @@ int main(int argc, char *argv[])
                 }
             }
             // multiplication
-            else if (random_number == 3) {
+            else if (random_number == 3)
+            {
                 int nombre_1 = rand() % 100;
                 int nombre_2 = rand() % 10;
                 strcpy(message, "What is the product of ");
@@ -323,7 +340,8 @@ int main(int argc, char *argv[])
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 int answer = 0;
                 scanf("%d", &answer);
-                if (answer == nombre_1 * nombre_2) {
+                if (answer == nombre_1 * nombre_2)
+                {
                     strcpy(message, "Yes, it is the product of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -332,7 +350,9 @@ int main(int argc, char *argv[])
                     length = strlen(message);
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
-                } else {
+                }
+                else
+                {
                     strcpy(message, "No, it is not the product of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -343,7 +363,8 @@ int main(int argc, char *argv[])
                 }
             }
             // difference
-            else if (random_number == 4) {
+            else if (random_number == 4)
+            {
                 int nombre_1 = rand() % 100;
                 int nombre_2 = rand() % 100;
                 strcpy(message, "What is the difference of ");
@@ -360,7 +381,8 @@ int main(int argc, char *argv[])
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 int answer = 0;
                 scanf("%d", &answer);
-                if (answer == nombre_1 - nombre_2) {
+                if (answer == nombre_1 - nombre_2)
+                {
                     strcpy(message, "Yes, it is the difference of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -369,7 +391,9 @@ int main(int argc, char *argv[])
                     length = strlen(message);
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
-                } else {
+                }
+                else
+                {
                     strcpy(message, "No, it is not the difference of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -380,7 +404,8 @@ int main(int argc, char *argv[])
                 }
             }
             // mod
-            else if (random_number == 5) {
+            else if (random_number == 5)
+            {
                 int nombre_1 = rand() % 100;
                 int nombre_2 = rand() % 10;
                 strcpy(message, "What is the mod of ");
@@ -397,7 +422,8 @@ int main(int argc, char *argv[])
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 int answer = 0;
                 scanf("%d", &answer);
-                if (answer == nombre_1 % nombre_2) {
+                if (answer == nombre_1 % nombre_2)
+                {
                     strcpy(message, "Yes, it is the mod of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -406,7 +432,9 @@ int main(int argc, char *argv[])
                     length = strlen(message);
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
-                } else {
+                }
+                else
+                {
                     strcpy(message, "No, it is not the mod of ");
                     strcat(message, str_nombre_1);
                     strcat(message, " and ");
@@ -417,27 +445,38 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        if (hour % 6 == 0 && minite == 0) {
+        if (hour % 6 == 0 && minite == 0)
+        {
             strcpy(message, "It's time to eat! Do you want to eat? (1 for yes, food - 5, life + 2; 0 for no, life - random number)");
             length = strlen(message);
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
             int answer = 0;
             scanf("%d", &answer);
-            if (answer == 1) {
-                if (food > 0) {
+            if (answer == 1)
+            {
+                if (food > 0)
+                {
                     food -= 5;
                     strcpy(message, "You ate! Food - 5");
                     length = strlen(message);
                     life += 2;
+                    eyes = "^^";
+                    tongue = "~~";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
-                } else {
+                }
+                else
+                {
                     strcpy(message, "You don't have enough food!");
                     length = strlen(message);
                     int random_number = (rand() % (life - 2)) + 1;
                     life -= random_number;
+                    eyes = "~~";
+                    tongue = "^";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                 }
-            } else {
+            }
+            else
+            {
                 int random_number = (rand() % (life - 2)) + 1;
                 life -= random_number;
                 strcpy(message, "You didn't eat! Life - ");
@@ -445,8 +484,68 @@ int main(int argc, char *argv[])
                 sprintf(str_random_number, "%d", random_number);
                 strcat(message, str_random_number);
                 length = strlen(message);
+                eyes = "~~";
+                tongue = "^";
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
             }
         }
+        // random event
+        // Thunder
+        if (hour + minite == rand() % 100)
+        {
+            strcpy(message, "It's a thunder! You lost life!");
+            length = strlen(message);
+            life -= 2;
+            eyes = "~~";
+            tongue = "^";
+            affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+        }
+        // Hunger
+        else if (hour + minite == rand() % 100)
+        {
+            strcpy(message, "It's a hunger! You lost food!");
+            length = strlen(message);
+            food -= 4;
+            eyes = "~~";
+            tongue = "^";
+            affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+        }
+        // Fire
+        else if (hour + minite == rand() % 100)
+        {
+            strcpy(message, "It's a fire! You lost life and food!");
+            length = strlen(message);
+            life -= 2;
+            food -= 2;
+            eyes = "~~";
+            tongue = "^";
+            affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+        }
+        // Mercy
+        else if (hour + minite == rand() % 100)
+        {
+            strcpy(message, "Mercy is coming! Food + 5");
+            length = strlen(message);
+            eyes = "^^";
+            tongue = "~~";
+            food += 5;
+            affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+        }
+    }
+    if (life <= 0)
+    {
+        strcpy(message, "You died because of hunger! Game over!");
+        length = strlen(message);
+        eyes = "xx";
+        tongue = "U ";
+        affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+    }
+    else if (life >= 10)
+    {
+        strcpy(message, "You died because of trop plein! Game over!");
+        length = strlen(message);
+        eyes = "xx";
+        tongue = "U ";
+        affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
     }
 }
