@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-05-02 12:01:43
+ * @LastEditTime: 2022-05-02 12:08:15
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
@@ -15,8 +15,18 @@
 
 #define MAX_LENGTH 512
 
+/*
+ * @description: Update(refresh) the Terminal
+ * @param {type}: void
+ * @return: void
+ */
 void update() { printf("\033[H\033[J"); }
 
+/*
+* @description: Make the pointer to x, y in Terminal
+* @param {type}: int x, int y
+* @return: void
+*/
 void gotoxy(x, y) { printf("\033[%d;%dH", x, y); }
 
 int life = 5;
