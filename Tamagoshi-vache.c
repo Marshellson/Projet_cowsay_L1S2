@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-04-27 14:53:03
+ * @LastEditTime: 2022-05-02 12:01:43
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
 
-    strcpy(message, "Please choose the speed of the game: (1) for slow (default), (2) for medium, (3) for fast, (4) for super fast (developer mode xd)");
+    strcpy(message, "Please choose the speed of the game: (1) for slow, (2) for medium (default), (3) for fast, (4) for super fast (developer mode xd)");
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, 1, hour, minite, food);
 
@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
             strcpy(message, "It's time to think about something!");
             length = strlen(message);
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
-            int random_number = rand() % 5;
+            int random_number = rand() % (4) + 1;
             srand(time(NULL));
             // prime number
             if (random_number == 1)
@@ -253,6 +253,8 @@ int main(int argc, char *argv[])
                     {
                         strcpy(message, "Yes, it is a prime number! You got it! Food + 2");
                         length = strlen(message);
+                        eyes = "^^";
+                        tongue = "~~";
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                         food += 2;
                     }
@@ -275,6 +277,8 @@ int main(int argc, char *argv[])
                     {
                         strcpy(message, "No, it is not a prime number! You got it! Food + 2");
                         length = strlen(message);
+                        eyes = "^^";
+                        tongue = "~~";
                         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                         food += 2;
                     }
@@ -307,6 +311,8 @@ int main(int argc, char *argv[])
                     strcat(message, str_nombre_2);
                     strcat(message, "! You got it! Food + 2");
                     length = strlen(message);
+                    eyes = "^^";
+                    tongue = "~~";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
                 }
@@ -348,6 +354,8 @@ int main(int argc, char *argv[])
                     strcat(message, str_nombre_2);
                     strcat(message, "! You got it! Food + 2");
                     length = strlen(message);
+                    eyes = "^^";
+                    tongue = "~~";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
                 }
@@ -389,6 +397,8 @@ int main(int argc, char *argv[])
                     strcat(message, str_nombre_2);
                     strcat(message, "! You got it! Food + 2");
                     length = strlen(message);
+                    eyes = "^^";
+                    tongue = "~~";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
                 }
@@ -430,6 +440,8 @@ int main(int argc, char *argv[])
                     strcat(message, str_nombre_2);
                     strcat(message, "! You got it! Food + 2");
                     length = strlen(message);
+                    eyes = "^^";
+                    tongue = "~~";
                     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
                     food += 2;
                 }
