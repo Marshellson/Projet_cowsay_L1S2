@@ -44,6 +44,8 @@ void update() { printf("\033[H\033[J"); }
 
 void gotoxy(x, y) { printf("\033[%d;%dH", x, y); }
 
+// TODO: hello
+
 int main(int argc, char *argv[])
 {
     char *eyes = "oo"; // default eyes

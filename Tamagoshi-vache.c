@@ -1,7 +1,7 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-05-02 12:08:15
+ * @LastEditTime: 2022-05-02 14:32:41
  * @LastEditors: JIANG Yilun
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
@@ -23,14 +23,21 @@
 void update() { printf("\033[H\033[J"); }
 
 /*
+
 * @description: Make the pointer to x, y in Terminal
 * @param {type}: int x, int y
 * @return: void
 */
 void gotoxy(x, y) { printf("\033[%d;%dH", x, y); }
 
-int life = 5;
+int life = 5; // Define the valeur initial to 5
 
+/*
+
+* @description: Print the etat of the cow
+* @param {type}: int life
+* @return: void
+*/
 void etat(int life)
 {
     if (life == 0 || life == 10)
@@ -47,6 +54,12 @@ void etat(int life)
     }
 }
 
+/*
+
+* @description: Print the cow
+* @param {type}: int *length_vache(for define the length of divise), char *message_vache(To print the message), char *eyes_vache(To print the cow's eyes(in default: "oo")), char *tongue_vache(To print the cow's tongue), int *tail_vache(To print the cow's tail(This is also the life of cow)), int time_tick_vache(To define how much time the anmie will take), int hour, int minite, int food
+* @return: void
+*/
 void affiche_vache(int *length_vache, char *message_vache, char *eyes_vache, char *tongue_vache, int *tail_vache, int time_tick_vache, int hour, int minite, int food)
 {
     update();
@@ -117,6 +130,11 @@ void affiche_vache(int *length_vache, char *message_vache, char *eyes_vache, cha
     }
 }
 
+/*
+* @description: count the time
+* @param {type}: int *hour, int *minite, int *food
+* @return: arr[hour, minite]
+*/
 void time_count(int time_tick, int hour, int minite, int arr[])
 {
     minite += 5;
@@ -133,6 +151,12 @@ void time_count(int time_tick, int hour, int minite, int arr[])
     arr[1] = minite;
 }
 
+/*
+* @description: check if the enter number is a prime number
+* @param {type}: int nombre
+* @return: int
+*/
+
 int check_prime_number(int nombre)
 {
     int i;
@@ -146,9 +170,15 @@ int check_prime_number(int nombre)
     return 1;
 }
 
+/*
+* @description: Main function
+* @param {type}: int argc, char *argv[]
+* @return: int
+*/
+
 int main(int argc, char *argv[])
 {
-    // Begin the game
+    // Begin the game, define the variables
     int tail = 1;
     int life = 5;
     int food = 10;
@@ -158,28 +188,34 @@ int main(int argc, char *argv[])
     int minite = 0;
     int hour = 0;
 
+    // Define the opening message
     char message[MAX_LENGTH] = "Welcome to the COWSAY Game!";
     int length = strlen(message);
     tongue = "U ";
     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
 
+    // Define the message of providing the name of the player
     strcpy(message, "Please enter your name: ");
     // *message = "Please enter your name: ";
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, 2, hour, minite, food);
 
+    // Define the name of the player and get the name from keyboard.
     char name[20];
     scanf("%s", name);
 
+    // Welcome the player
     strcpy(message, "Hello ");
     strcat(message, name);
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
 
-    strcpy(message, "Please choose the speed of the game: (1) for slow, (2) for medium (default), (3) for fast, (4) for super fast (developer mode xd)");
+    // Define the speed of the game, (4) for super fast (developer mode xd)
+    strcpy(message, "Please choose the speed of the game: (1) for slow, (2) for medium (default), (3) for fast");
     length = strlen(message);
     affiche_vache(&length, message, eyes, tongue, &tail, 1, hour, minite, food);
 
+    // Define the speed of the game, and get the value from keyboard.
     int game_speed;
     scanf("%d", &game_speed);
 
@@ -219,42 +255,52 @@ int main(int argc, char *argv[])
         time_tick = 5;
     }
 
-    int i = 0;
-    time_t seconds_of_start;
-    seconds_of_start = time(NULL);
-    printf("time: %ld\n", seconds_of_start);
+    int i = 0; // i is the number of the loop, not using later but just left there if needed
 
     while (life > 0 && life < 10)
     {
+        // Count the time, with returning the value of the time in an array: arr[hour, minite]
         int arr[2];
         strcpy(message, "...");
-        // printf("%d\n", rand() % 10);
         length = strlen(message);
         time_count(time_tick, hour, minite, arr);
         hour = arr[0];
         minite = arr[1];
         tail = life;
         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+
         i++;
         update();
+
+        // Check if minite is equal to 60, if yes its time to play a game/
         if (minite == 0)
         {
+            // Define the message of playing game.
             strcpy(message, "It's time to think about something!");
             length = strlen(message);
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+            
+            // Define a random number between 1 to 5, to chose which kind of math problem we will use.
             int random_number = rand() % (4) + 1;
-            srand(time(NULL));
-            // prime number
+            srand(time(NULL)); // Initialize the random number generator.
+            
+            // If random is equal to 1 then we will use the prime problem.
             if (random_number == 1)
             {
+                // Define the message of the prime problem, from 0 to 100.
                 int nombre_premier = rand() % 100;
+                // Initialize the message to be displayed.
                 strcpy(message, "Is it a prime number? (1) for yes, (2) for no: ");
+                // Make the prime number to be displayed.
                 char str_nombre_premier[MAX_LENGTH] = "";
                 sprintf(str_nombre_premier, "%d", nombre_premier);
+                // Make message and prime number to be together.
                 strcat(message, str_nombre_premier);
 
                 length = strlen(message);
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+
+                // Get the answer from keyboard.
                 int answer = 0;
                 scanf("%d", &answer);
                 if (answer == 1)
@@ -294,12 +340,15 @@ int main(int argc, char *argv[])
                     }
                 }
             }
-            // addition
+            // If random is equal to 2 then we will use the addition problem.
             else if (random_number == 2)
             {
+                // Define the 2 values of the addition problem, from 0 to 100.
                 int nombre_1 = rand() % 100;
                 int nombre_2 = rand() % 100;
+                // Initialize the message to be displayed.
                 strcpy(message, "What is the sum of ");
+                // Make the two numbers to be displayed.
                 char str_nombre_1[MAX_LENGTH] = "";
                 char str_nombre_2[MAX_LENGTH] = "";
                 sprintf(str_nombre_1, "%d", nombre_1);
@@ -311,6 +360,8 @@ int main(int argc, char *argv[])
 
                 length = strlen(message);
                 affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+
+                // Get the answer from keyboard.
                 int answer = 0;
                 scanf("%d", &answer);
                 if (answer == nombre_1 + nombre_2)
@@ -467,11 +518,15 @@ int main(int argc, char *argv[])
                 }
             }
         }
+
+        // If it's 6h, 12h, 18h, 24h then its time to eat, the player can choose if they want to feed the cow or not
         if (hour % 6 == 0 && minite == 0)
         {
             strcpy(message, "It's time to eat! Do you want to eat? (1 for yes, food - 5, life + 2; 0 for no, life - random number)");
             length = strlen(message);
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
+            
+            // Ask for the player if he wants to feed
             int answer = 0;
             scanf("%d", &answer);
             if (answer == 1)

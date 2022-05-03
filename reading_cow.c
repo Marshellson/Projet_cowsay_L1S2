@@ -70,10 +70,6 @@ int main(int argc, char *argv[])
             affiche_vache(&length, message, eyes, &c, &tail);
             sleep(1);
             update();
-            // char *c_buffer = malloc(strlen(message) + strlen(&c) + 1);
-            // strcpy(c_buffer, message);
-            // strcat(c_buffer, &c);
-            // message = c_buffer;
             message[length - 1] = c;
             message[length] = '\0';
         }
