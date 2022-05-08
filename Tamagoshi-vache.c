@@ -567,7 +567,7 @@ int main(int argc, char *argv[])
             }
         }
         // random event
-        // Thunder
+        // Thunder: life - 2
         if (hour + minite == rand() % 100)
         {
             strcpy(message, "It's a thunder! You lost life!");
@@ -577,7 +577,7 @@ int main(int argc, char *argv[])
             tongue = "^";
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
         }
-        // Hunger
+        // Hunger: food - 4
         else if (hour + minite == rand() % 100)
         {
             strcpy(message, "It's a hunger! You lost food!");
@@ -587,7 +587,7 @@ int main(int argc, char *argv[])
             tongue = "^";
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
         }
-        // Fire
+        // Fire: life - 2 && food - 2
         else if (hour + minite == rand() % 100)
         {
             strcpy(message, "It's a fire! You lost life and food!");
@@ -598,7 +598,7 @@ int main(int argc, char *argv[])
             tongue = "^";
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
         }
-        // Mercy
+        // Mercy: food + 5
         else if (hour + minite == rand() % 100)
         {
             strcpy(message, "Mercy is coming! Food + 5");
