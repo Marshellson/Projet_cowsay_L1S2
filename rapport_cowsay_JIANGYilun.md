@@ -1,13 +1,9 @@
-<!--
-
- * @Author: JIANG Yilun
- * @Date: 2022-04-24 14:28:58
- * @LastEditTime: 2022-05-08 14:10:09
- * @LastEditors: ThearchyHelios
- * @Description: Rapport du projet Cowsay
- * @FilePath: /Projet_cowsay_L1S2/rapport_cowsay_JIANGYilun.md
--->
-
+<!--@Author: JIANG Yilun-->
+<!--@Date: 2022-04-24 14:28:58-->
+<!--@LastEditTime: 2022-05-08 14:47:30-->
+<!--@LastEditors: ThearchyHelios-->
+<!--@Description: Rapport du projet Cowsay-->
+<!--@FilePath: /Projet_cowsay_L1S2/rapport_cowsay_JIANGYilun.md-->
 
 
 # Projet Cowsay
@@ -17,6 +13,8 @@
 ## Sommaire
 
 [TOC]
+
+<div style="page-break-after: always;"></div>
 
 ## 1. Présentation du Projet `cowsay`
 
@@ -883,12 +881,14 @@ Ce jeu comporte cinq modèles mathématiques : déterminer si un nombre est prem
 
 De plus, des événements aléatoires se produiront dans le scénario du jeu et le joueur peut obtenir des effets négatifs, tels que la perte de nourriture ou de life. Ou vous pouvez activer l'effet "ange", qui vous apporte de la nourriture.
 
+En outre, le joueur peut juger de la valeur de la vie par la longueur de la queue.
+
 ```C
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-05-02 14:32:41
- * @LastEditors: JIANG Yilun
+ * @LastEditTime: 2022-05-08 14:24:37
+ * @LastEditors: ThearchyHelios
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
  */
@@ -936,6 +936,7 @@ void etat(int life)
     }
     else if (life <= 6 && life >= 4 || life)
     {
+        
         printf("liferocks");
     }
 }
@@ -1167,7 +1168,7 @@ int main(int argc, char *argv[])
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
             
             // Define a random number between 1 to 5, to chose which kind of math problem we will use.
-            int random_number = rand() % (4) + 1;
+            int random_number = rand() % (5) + 1;
             srand(time(NULL)); // Initialize the random number generator.
             
             // If random is equal to 1 then we will use the prime problem.
@@ -1512,6 +1513,7 @@ int main(int argc, char *argv[])
         affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
     }
 }
+
 ```
 
 #### Problème Mathématique
@@ -1537,7 +1539,7 @@ Case mod:
 ![image-20220508143442177](rapport_cowsay_JIANGYilun.assets/image-20220508143442177.png)
 
 
-#### Temp de manger:
+#### Temp de manger
 
 ![image-20220508134524600](rapport_cowsay_JIANGYilun.assets/image-20220508134524600.png)
 
