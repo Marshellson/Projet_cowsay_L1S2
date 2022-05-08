@@ -2,9 +2,9 @@
 
  * @Author: JIANG Yilun
  * @Date: 2022-04-24 14:28:58
- * @LastEditTime: 2022-04-24 21:15:04
- * @LastEditors: JIANG Yilun
- * @Description: 
+ * @LastEditTime: 2022-05-08 14:10:09
+ * @LastEditors: ThearchyHelios
+ * @Description: Rapport du projet Cowsay
  * @FilePath: /Projet_cowsay_L1S2/rapport_cowsay_JIANGYilun.md
 -->
 
@@ -1528,6 +1528,13 @@ Case nombre prime:
 
 ![image-20220508133948586](rapport_cowsay_JIANGYilun.assets/image-20220508133948586.png)
 
+Case multiplier:
+
+![image-20220508135415723](rapport_cowsay_JIANGYilun.assets/image-20220508135415723.png)
+
+Case mod:
+
+![image-20220508143442177](rapport_cowsay_JIANGYilun.assets/image-20220508143442177.png)
 
 
 #### Temp de manger:

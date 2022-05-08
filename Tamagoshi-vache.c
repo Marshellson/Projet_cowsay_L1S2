@@ -1,8 +1,8 @@
 /*
  * @Author: JIANG Yilun
  * @Date: 2022-04-25 15:51:26
- * @LastEditTime: 2022-05-02 14:32:41
- * @LastEditors: JIANG Yilun
+ * @LastEditTime: 2022-05-08 14:24:37
+ * @LastEditors: ThearchyHelios
  * @Description:
  * @FilePath: /Projet_cowsay_L1S2/Tamagoshi-vache.c
  */
@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
             affiche_vache(&length, message, eyes, tongue, &tail, time_tick, hour, minite, food);
             
             // Define a random number between 1 to 5, to chose which kind of math problem we will use.
-            int random_number = rand() % (4) + 1;
+            int random_number = rand() % (5) + 1;
             srand(time(NULL)); // Initialize the random number generator.
             
             // If random is equal to 1 then we will use the prime problem.
